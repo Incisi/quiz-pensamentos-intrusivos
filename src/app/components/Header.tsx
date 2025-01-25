@@ -1,32 +1,27 @@
 import React from 'react';
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
-import Image from "next/image";
 
 export default function Header() {
   return (
-    <header className="w-full bg-blue-500 text-white py-4 shadow-md">
+    <header className="w-full bg-blue-500 text-white py-5 shadow-md">
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
 
         <nav>
-          <ul className="flex space-x-4">
-            <Image
-              src="/logo.png"
-              width={30}
-              height={5}
-              alt="Logo da Brico Bread" />
+          <ul className="flex space-x-4 items-center">
+
             <li>
-              <Link href="/" className="hover:underline">
+              <Link href="/" className="hover:no-underline text-xl hover:font-bold">
                 Início
               </Link>
             </li>
             <li>
-              <Link href="/quiz" className="hover:underline">
+              <Link href="/quiz" className="hover:no-underline text-xl hover:font-bold">
                 Quiz
               </Link>
             </li>
             <li>
-              <Link href="/results" className="hover:underline">
+              <Link href="/results" className="hover:no-underline text-xl hover:font-bold">
                 Resultados
               </Link>
             </li>
@@ -36,6 +31,6 @@ export default function Header() {
         <ThemeToggle />
 
       </div>
-    </header>
+    </header >
   );
 }

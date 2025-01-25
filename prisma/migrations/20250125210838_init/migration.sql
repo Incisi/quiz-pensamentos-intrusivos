@@ -1,0 +1,7 @@
+-- CreateTable
+CREATE TABLE "Result" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "name" TEXT NOT NULL,
+    "score" INTEGER NOT NULL,
+    "date" DATETIME NOT NULL
+);

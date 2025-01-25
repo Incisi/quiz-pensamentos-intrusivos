@@ -2,9 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { FaArrowRight } from 'react-icons/fa';
 
 interface Question {
   clientQuestion: string;
@@ -15,123 +13,123 @@ interface Question {
 
 const questions: Question[] = [
   {
-    clientQuestion: "O cliente diz que achou um cabelo no pão.",
-    intrusiveThought: "Seu pensamento intrusivo diz para perguntar se ele colocou o cabelo lá para ganhar um pão grátis.",
-    mainQuestion: "O que você faz?",
+    clientQuestion: "O cliente diz que encontrou um cabelo no pão.",
+    intrusiveThought: "Seu pensamento intrusivo diz que ele deve ter um 'pão de cabelo' especial.",
+    mainQuestion: "O que responde?",
     options: [
-      { text: "1. Pede desculpas e promete investigar o caso.", points: 0 },
-      { text: "2. Diz: 'Tem certeza que não foi você?'", points: 7 },
-      { text: "3. Responde: 'Cabelo é um brinde especial 😁😁'", points: 10 }
+      { text: "'Ih, sorte que foi só um. Normalmente vem dois.'", points: 10 },
+      { text: "'Ah, pelo menos é só um cabelo, né? Podia ser coisa pior.'", points: 7 },
+      { text: "'Bom, eu não sou cabeleireiro, então não sei de quem é.'", points: 10 }
     ]
   },
   {
     clientQuestion: "O cliente diz que está esperando há 20 minutos por uma resposta no chat.",
-    intrusiveThought: "Seu pensamento intrusivo diz para ignorar e ver se ele desiste.",
+    intrusiveThought: "Seu pensamento intrusivo sugere que ele deve estar fazendo um 'pão de paciência'.",
     mainQuestion: "O que você faz?",
     options: [
-      { text: "1. Responde: 'Tem gente na fila, calma.'", points: 5 },
-      { text: "2. Pede desculpas pelo atraso e o atende imediatamente.", points: 0 },
-      { text: "3. Sai para tomar um café e pensa nisso depois.", points: 7 }
+      { text: "Responde: 'Parabéns pela paciência, mas infelizmente a fila está grande, aguarde mais um pouquinho.'.", points: 10 },
+      { text: "Finge que não viu a mensagem e vai tomar um cafézinho.'", points: 2 },
+      { text: "Diz: 'Enquanto isso, que tal você ir fazendo outra coisa?'", points: 8 }
     ]
   },
   {
-    clientQuestion: "O cliente diz que o pão ficou queimado e exige que seja feita uma troca!",
-    intrusiveThought: "O seu pensamento intrusivo diz para mandar ele aprender a usar um forno.",
-    mainQuestion: "O que você faz?",
+    clientQuestion: "O cliente reclamou que o pão ficou queimado quando ele assou!",
+    intrusiveThought: "Seu pensamento intrusivo sugere que ele deve aprender a 'domar o forno'.",
+    mainQuestion: "Como você responde?",
     options: [
-      { text: "1. Responde: 'Então não coma.'", points: 9 },
-      { text: "2. Diz: 'Talvez o problema esteja no seu forno.'", points: 6 },
-      { text: "3. Pede desculpas e explica a ele sobre a preparação correta do produto.", points: 0 }
+      { text: "'Se queimou, é porque você não sabe usar o forno. Tá precisando de um manual?'", points: 10 },
+      { text: "'Bom, pelo menos você pode chamar de torrada agora.'", points: 7 },
+      { text: "'Sério? Nem sabia que era possível queimar um pão tão simples!'", points: 8 }
     ]
   },
   {
     clientQuestion: "O cliente diz que o pedido chegou errado!",
-    intrusiveThought: "O seu pensamento intrusivo diz para perguntar se ele leu o pedido direito.",
+    intrusiveThought: "Seu pensamento intrusivo diz para perguntar se ele leu o pedido direito.",
     mainQuestion: "Como você resolve a situação?",
     options: [
-      { text: "1. Responde: 'Problema seu 😅'", points: 10 },
-      { text: "2. Pede desculpas e envia o pedido correto.", points: 0 },
-      { text: "3. Diz: 'Confirme se você pediu certo.'", points: 5 }
+      { text: "'Ih, já era... Agora só no próximo pedido pra acertar!'", points: 10 },
+      { text: "'Já experimentou comer o que foi entregue? Vai que é melhor do que o que você pediu.'", points: 7 },
+      { text: "'Você não sabe pedir direito e a culpa é minha, é?'", points: 9 }
     ]
   },
   {
-    clientQuestion: "O cliente diz que encontrou um pedaço de plástico no pão.",
-    intrusiveThought: "O seu pensamento intrusivo diz para você oferecer um brinde como compensação pelo plástico extra.",
-    mainQuestion: "O que você faz?",
+    clientQuestion: "O cliente diz que encontrou um pedaço de vidro no pão.",
+    intrusiveThought: "Seu pensamento intrusivo diz para você cobrar uma taxa como compensação pelo vidro extra enviado.",
+    mainQuestion: "O que você responde?",
     options: [
-      { text: "1. Pede desculpas e promete investigar o ocorrido.", points: 0 },
-      { text: "2. Diz: 'A embalagem está no pão, faz parte.'", points: 9 },
-      { text: "3. Responde: 'Relaxa, é cortesia da casa.'", points: 10 },
+      { text: "'Olha, a gente trabalha com pão, não com joias. Se achou vidro, é lucro.'", points: 10 },
+      { text: "'Você tem certeza que não foi você que deixou cair vidro aí? Porque aqui a gente não trabalha com isso.'", points: 6 },
+      { text: "'Vidro? Tá vendo? Nossos produtos são realmente transparentes.'", points: 8 },
     ]
   },
   {
     clientQuestion: "O cliente diz que o pão não tem o sabor que ele esperava.",
-    intrusiveThought: "O seu pensamento intrusivo diz para você mandar ele pedir um novo pão com o sabor certo.",
+    intrusiveThought: "Seu pensamento intrusivo diz para você mandar ele pedir um novo pão com o sabor certo.",
     mainQuestion: "O que você faz?",
     options: [
-      { text: "1. Pede desculpas e tenta explicar para o cliente como preparar o pão da maneira correta.", points: 0 },
-      { text: "2. Responde: 'Se você preparar do jeito certo ele terá um sabor melhor!'", points: 9 },
-      { text: "3. Diz: 'Então aprenda a preparar o seu próprio pão.'", points: 8 }
+      { text: "'O sabor tá aí, talvez o problema seja o seu paladar.'", points: 5 },
+      { text: "'Se não gostou, faz você mesmo da próxima vez. Boa sorte!'", points: 7 },
+      { text: "'Poxa, sinto muito que o pão não leu sua mente antes de ser feito.'", points: 8 }
     ]
   },
   {
     clientQuestion: "O cliente diz: 'Por que o pão que entregaram é tão pequeno?'",
-    intrusiveThought: "O seu pensamento intrusivo diz para perguntar se ele já ouviu falar em dieta.",
+    intrusiveThought: "Seu pensamento intrusivo diz para perguntar se ele já ouviu falar em dieta.",
     mainQuestion: "O que você responde?",
     options: [
-      { text: "1. Responde: 'Talvez você precise comprar óculos.'", points: 9 },
-      { text: "2. Pede desculpas e explique que pode ter ocorrido um erro no lote.", points: 0 },
-      { text: "3. Diz: 'Pequeno, mas saboroso!'", points: 4 }
+      { text: "'Porque é pão, não um bolo de aniversário. Quer algo maior? Pede 2.'", points: 9 },
+      { text: "'Bom, pelo menos não pesa tanto na balança, né? E ainda é saudável!'", points: 7 },
+      { text: "'Tamanho não é documento, o que importa é o sabor.'", points: 4 }
     ]
   },
   {
     clientQuestion: "O cliente pergunta se colocaram fermento vencido no pão, pois não cresceu nada!",
-    intrusiveThought: "O seu pensamento intrusivo diz para sugerir que ele preste atenção no que ele está comprando.",
+    intrusiveThought: "Seu pensamento intrusivo te mandou ser o mais sarcástico possível.",
     mainQuestion: "Como você responde?",
     options: [
-      { text: "1. Responde: 'Ele cresceu sim, talvez você que tenha dificuldades de visão.'", points: 10 },
-      { text: "2. Diz: 'Não era para crescer mesmo, ele é feito para ser assim.'", points: 6 },
-      { text: "3. Explica que o processo de fermentação é feito na fabricação e que ele não cresce mais depois.", points: 0 },
+      { text: "'Ah, claro, o pão não cresceu porque o fermento estava meditando sobre a vida. Coisa de fermento vencido, sabe como é, ele tá de folga.'", points: 9 },
+      { text: "'Olha, o fermento pode até estar vencido, mas talvez seja o clima emocional da cozinha que não tava propício. Energia negativa afeta o crescimento.'", points: 10 },
+      { text: "'Ah, não cresceu? Que coisa. Mas pelo menos você tem um pão achatado estiloso. Isso é tendência gourmet, sabia?'", points: 6 },
     ]
   },
   {
     clientQuestion: "O cliente questiona o porquê de não termos atendimento 24 horas.",
-    intrusiveThought: "O seu pensamento intrusivo diz para dizer que a vida não gira em torno dele.",
+    intrusiveThought: "Seu pensamento intrusivo diz para dizer que a vida não gira em torno dele.",
     mainQuestion: "O que você faz?",
     options: [
-      { text: "1. Pede desculpas e informa os horários de funcionamento.", points: 0 },
-      { text: "2. Responde: 'Você acha que somos robôs?'", points: 8 },
-      { text: "3. Fala para usar o FAQ enquanto estamos offline.", points: 3 },
+      { text: "Responde: 'Porque a gente precisa dormir, né? Não somos robôs!'", points: 10 },
+      { text: "Diz: 'Ah, quer atendimento 24 horas? Vai pra um hospital, lá tem.'", points: 10 },
+      { text: "Apaga todas as mensagens dele e o deixa sem atendimento... (Até o seu chefe ver)", points: 10 },
     ]
   },
   {
     clientQuestion: "O cliente reclama que o pão de queijo tem pouco queijo.",
-    intrusiveThought: "O seu pensamento intrusivo diz: 'Fale que vendemos pão de queijo, não queijo de pão'",
-    mainQuestion: "O que você faz?",
+    intrusiveThought: "Seu pensamento intrusivo diz: 'Fale que vendemos pão de queijo, não queijo com pão'",
+    mainQuestion: "O que você diz?",
     options: [
-      { text: "1. Responde: 'É só comprar 1kg de mussarela no mercado e colocar em cima!'", points: 9 },
-      { text: "2. Pede desculpas e informa que o nosso pão de queijo é o único que de fato vai queijo na receita.", points: 0 },
-      { text: "3. Pergunta se ele tem certeza que assou o pão de queijo da Brico e não um de outra marca.", points: 5 },
+      { text: "'É só comprar 1kg de mussarela no mercado e colocar em cima!'", points: 8 },
+      { text: "'Tá reclamando de pouco queijo? Pelo menos tem algum, né? Já pensou se viesse sem?'", points: 6 },
+      { text: "'Quer mais queijo? Compra uma vaca e fabrica o seu em casa.'", points: 10 },
     ]
   },
   {
     clientQuestion: "O cliente pergunta porque o pão é tão caro se é só farinha com água!",
-    intrusiveThought: "O seu pensamento intrusivo manda perguntar se ele sabe o preço do trigo.",
+    intrusiveThought: "Seu pensamento intrusivo manda perguntar se ele sabe o preço do trigo.",
     mainQuestion: "Como você responde?",
     options: [
-      { text: "1. Diz para ele fazer o próprio pão em casa.", points: 9 },
-      { text: "2. Explica que o preço reflete a qualidade e o processo de produção.", points: 0 },
-      { text: "3. Responde: 'É só parar de reclamar e ir comprar em outro lugar.'", points: 10 }
+      { text: "'Se é só farinha com água, por que você não faz em casa, então?'", points: 8 },
+      { text: "'Ah, se acha caro, experimenta comer só farinha com água. Vamos ver se é a mesma coisa.'", points: 8 },
+      { text: "'É caro porque a gente precisa pagar as contas, e isso inclui lidar com perguntas como essa.'", points: 10 }
     ]
   },
   {
     clientQuestion: "O cliente diz: 'Minha filha é alérgica e vocês não avisaram que tinha glúten!'",
-    intrusiveThought: "O seu pensamento intrusivo diz: 'Pergunte se ele sabe ler rótulos.'",
-    mainQuestion: "O que você faz?",
+    intrusiveThought: "Seu pensamento intrusivo diz: 'Pergunte se ele sabe ler rótulos.'",
+    mainQuestion: "Como você responde?",
     options: [
-      { text: "1. Diz: 'Está no rótulo, você deveria ter lido.'", points: 8 },
-      { text: "2. Responde: 'Se você soubesse ler isso não teria acontecido.'", points: 10 },
-      { text: "3. Pede desculpas e explica onde estão as informações no rótulo.", points: 0 }
+      { text: "'Bom, se você sabe que ela é alérgica, por que não perguntou antes de comprar?'", points: 5 },
+      { text: "'Olha, a gente não é médico. Se sua filha tem alergia, você devia estar mais atenta.'", points: 10 },
+      { text: "'Peço perdão, aqui vai o aviso: Tem glúten!'", points: 10 }
     ]
   }
 ];
@@ -156,25 +154,27 @@ export default function Quiz() {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
-      const personality = calculatePersonality(score + points);
-      saveResult(name, personality);
-      router.push(
-        `/results?name=${encodeURIComponent(name)}&personality=${encodeURIComponent(personality)}`
-      );
+      saveResult(name, score + points);
+      router.push(`/results`);
     }
   };
 
-  const calculatePersonality = (finalScore: number): string => {
-    if (finalScore <= 11) return "Zens";
-    if (finalScore <= 33) return "Calmos";
-    if (finalScore <= 30) return "Ponderados";
-    return "Temperamentais";
-  };
+  const saveResult = async (name: string, finalScore: number) => {
+    try {
+      const response = await fetch("/api/results", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, score: finalScore }),
+      });
 
-  const saveResult = (name: string, personality: string) => {
-    const existingResults = JSON.parse(localStorage.getItem("quizResults") || "[]");
-    const updatedResults = [...existingResults, { name, personality }];
-    localStorage.setItem("quizResults", JSON.stringify(updatedResults));
+      if (!response.ok) {
+        throw new Error("Falha ao salvar o resultado.");
+      }
+    } catch (error) {
+      console.error("Erro ao salvar o resultado:", error);
+    }
   };
 
   return (
@@ -194,7 +194,7 @@ export default function Quiz() {
             onClick={handleStartQuiz}
             className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
           >
-            <FontAwesomeIcon icon={faArrowRight} className="fa-fw" />
+            <FaArrowRight className="text-white" size={16} />
           </button>
         </div>
       ) : (

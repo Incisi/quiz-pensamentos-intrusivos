@@ -1,19 +1,26 @@
-"use client";
+import { headers } from "next/headers";
 
-import { useEffect, useState } from "react";
+async function fetchResults() {
+  try {
+    const host = (await headers()).get("host");
+    const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
+    const response = await fetch(`${protocol}://${host}/api/results`, {
+      cache: "no-store",
+    });
 
-interface QuizResult {
-  name: string;
-  personality: string;
+    if (!response.ok) {
+      throw new Error("Falha ao buscar resultados");
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
 }
 
-export default function Results() {
-  const [results, setResults] = useState<QuizResult[]>([]);
-
-  useEffect(() => {
-    const savedResults = JSON.parse(localStorage.getItem("quizResults") || "[]");
-    setResults(savedResults);
-  }, []);
+export default async function Results() {
+  const results = await fetchResults();
 
   return (
     <div className="flex flex-col items-center justify-center">
@@ -24,14 +31,21 @@ export default function Results() {
             <thead>
               <tr className="">
                 <th className="border border-gray-300 px-4 py-2">Nome</th>
-                <th className="border border-gray-300 px-4 py-2">Pensamentos Intrusivos</th>
+                <th className="border border-gray-300 px-4 py-2">Pontuação (73 à 117)</th>
+                <th className="border border-gray-300 px-4 py-2">Data e Hora</th>
               </tr>
             </thead>
             <tbody>
-              {results.map((result, index) => (
+              {results.map((result: any, index: number) => (
                 <tr key={index}>
                   <td className="border border-gray-300 px-4 py-2">{result.name}</td>
-                  <td className="border border-gray-300 px-4 py-2">{result.personality}</td>
+                  <td className="border border-gray-300 px-4 py-2">{result.score}</td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {new Date(result.date).toLocaleString("pt-BR", {
+                      dateStyle: "short",
+                      "timeStyle": "short"
+                    })}
+                  </td>
                 </tr>
               ))}
             </tbody>
