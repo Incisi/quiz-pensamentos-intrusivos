@@ -6,18 +6,26 @@ interface Result {
   date: string;
 }
 
-async function fetchResults() {
-  const baseUrl = process.env.NODE_ENV === "production"
-    ? "https://quiz.incisi.dev.br/"
-    : "http://localhost:3000";
-  const response = await fetch(`${baseUrl}/api/results`);
-  if (!response.ok) {
-    throw new Error("Falha ao buscar resultados");
-  }
-  return response.json();
-}
 
-export default async function ResultsPage() {
+
+export default async function Results() {
+
+  const fetchResults = async () => {
+    const baseUrl = process.env.NODE_ENV === "production"
+      ? "https://quiz.incisi.dev.br/"
+      : "http://localhost:3000";
+    try {
+      const response = await fetch(`${baseUrl}/api/results`);
+      if (!response.ok) {
+        throw new Error("Falha ao buscar resultados");
+      }
+      return response.json();
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
+
+  }
   const results: Result[] = await fetchResults();
 
   return (
