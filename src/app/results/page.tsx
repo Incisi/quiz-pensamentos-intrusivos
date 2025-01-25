@@ -1,4 +1,4 @@
-import { headers } from "next/headers";
+import React from 'react';
 
 interface Result {
   name: string;
@@ -7,45 +7,19 @@ interface Result {
 }
 
 async function fetchResults() {
-  try {
-    const host = (await headers()).get("host");
-    const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
-    const response = await fetch(`${protocol}://${host}/api/results`);
-
-    if (!response.ok) {
-      throw new Error("Falha ao buscar resultados");
-    }
-
-    return response.json();
-  } catch (error) {
-    console.error(error);
-    return [];
+  const baseUrl = process.env.NODE_ENV === "production"
+    ? "https://quiz.incisi.dev.br/"
+    : "http://localhost:3000";
+  const response = await fetch(`${baseUrl}/api/results`);
+  if (!response.ok) {
+    throw new Error("Falha ao buscar resultados");
   }
+  return response.json();
 }
 
-export async function getServerSideProps() {
-  try {
-    const results = await fetchResults();
-    return {
-      props: {
-        results
-      }
-    };
-  } catch (error) {
-    console.error(error);
-    return {
-      props: {
-        results: []
-      }
-    };
-  }
-}
+export default async function ResultsPage() {
+  const results: Result[] = await fetchResults();
 
-interface ResultsPageProps {
-  results: Result[];
-}
-
-export default function ResultsPage({ results }: { results: Result[] }) {
   return (
     <div className="flex flex-col items-center justify-center">
       <div className="p-6 rounded-lg shadow-md shadow-black w-full max-w-2xl">
@@ -53,21 +27,21 @@ export default function ResultsPage({ results }: { results: Result[] }) {
         {results.length > 0 ? (
           <table className="table-auto w-full border-collapse border border-gray-300">
             <thead>
-              <tr className="">
+              <tr>
                 <th className="border border-gray-300 px-4 py-2">Nome</th>
                 <th className="border border-gray-300 px-4 py-2">Pontuação (73 à 117)</th>
                 <th className="border border-gray-300 px-4 py-2">Data e Hora</th>
               </tr>
             </thead>
             <tbody>
-              {results.map((result: Result, index: number) => (
+              {results.map((result, index) => (
                 <tr key={index}>
                   <td className="border border-gray-300 px-4 py-2">{result.name}</td>
                   <td className="border border-gray-300 px-4 py-2">{result.score}</td>
                   <td className="border border-gray-300 px-4 py-2">
                     {new Date(result.date).toLocaleString("pt-BR", {
                       dateStyle: "short",
-                      "timeStyle": "short"
+                      timeStyle: "short",
                     })}
                   </td>
                 </tr>
