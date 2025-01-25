@@ -9,7 +9,7 @@ export async function GET() {
         return NextResponse.json(results);
     } catch (error) {
         console.error("Erro ao ler os resultados do banco:", error);
-        return NextResponse.json({ error: "Não foi possível carregar os resultados." }, { status: 500 });
+        return NextResponse.json({ error: `Não foi possível carregar os resultados. ${error}` }, { status: 500 });
     } finally {
         await prisma.$disconnect();
     }
