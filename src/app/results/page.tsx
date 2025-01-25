@@ -1,12 +1,16 @@
 import { headers } from "next/headers";
 
+interface Result {
+  name: string;
+  score: number;
+  date: string;
+}
+
 async function fetchResults() {
   try {
     const host = (await headers()).get("host");
     const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
-    const response = await fetch(`${protocol}://${host}/api/results`, {
-      cache: "no-store",
-    });
+    const response = await fetch(`${protocol}://${host}/api/results`);
 
     if (!response.ok) {
       throw new Error("Falha ao buscar resultados");
@@ -19,15 +23,29 @@ async function fetchResults() {
   }
 }
 
-interface Result {
-  name: string;
-  score: number;
-  date: string;
+export async function getServerSideProps() {
+  try {
+    const results = await fetchResults();
+    return {
+      props: {
+        results
+      }
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      props: {
+        results: []
+      }
+    };
+  }
 }
 
-export default async function Results() {
-  const results = await fetchResults();
+interface ResultsPageProps {
+  results: Result[];
+}
 
+export default function ResultsPage({ results }: { results: Result[] }) {
   return (
     <div className="flex flex-col items-center justify-center">
       <div className="p-6 rounded-lg shadow-md shadow-black w-full max-w-2xl">
