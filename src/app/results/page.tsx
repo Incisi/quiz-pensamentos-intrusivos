@@ -19,6 +19,12 @@ async function fetchResults() {
   }
 }
 
+interface Result {
+  name: string;
+  score: number;
+  date: string;
+}
+
 export default async function Results() {
   const results = await fetchResults();
 
@@ -36,7 +42,7 @@ export default async function Results() {
               </tr>
             </thead>
             <tbody>
-              {results.map((result: any, index: number) => (
+              {results.map((result: Result, index: number) => (
                 <tr key={index}>
                   <td className="border border-gray-300 px-4 py-2">{result.name}</td>
                   <td className="border border-gray-300 px-4 py-2">{result.score}</td>
