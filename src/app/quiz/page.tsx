@@ -161,7 +161,7 @@ export default function Quiz() {
 
   const saveResult = async (name: string, finalScore: number) => {
     try {
-      const response = await fetch("/api/results", {
+      const response = await fetch("https://quiz.incisi.dev.br/api/results", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
