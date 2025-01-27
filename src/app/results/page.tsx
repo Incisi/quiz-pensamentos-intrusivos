@@ -44,9 +44,7 @@ export default async function Results() {
                 <tr key={index}>
                   <td className="border border-gray-300 px-4 py-2">{result.name}</td>
                   <td className="border border-gray-300 px-4 py-2">{result.score}</td>
-                  <td className="border border-gray-300 px-4 py-2">
-                    {format(new Date(result.date), "HH:mm - dd-MM-yyyy")}
-                  </td>
+                  <td className="border border-gray-300 px-4 py-2">(result.date)</td>
                 </tr>
               ))}
             </tbody>
