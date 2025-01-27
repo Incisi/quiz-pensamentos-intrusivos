@@ -12,6 +12,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
+      <head>
+        <title>Quiz - Pensamentos Intrusivos</title>
+      </head>
       <body
         className={`antialiased`}
       >
