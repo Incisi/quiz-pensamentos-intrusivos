@@ -1,11 +1,10 @@
 {
-  "name": "bb-ativos",
-  "version": "0.1.0",
+  "name": "quiz-penamentos-intrusivos",
+  "version": "1.0",
   "private": true,
   "scripts": {
-    "postinstall": "prisma generate",
     "dev": "next dev --turbopack",
-    "build": "npx prisma generate && prisma migrate deploy && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
