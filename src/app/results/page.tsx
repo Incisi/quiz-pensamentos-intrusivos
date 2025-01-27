@@ -1,4 +1,5 @@
 import React from 'react';
+import { format } from "date-fns";
 
 interface Result {
   name: string;
@@ -44,10 +45,7 @@ export default async function Results() {
                   <td className="border border-gray-300 px-4 py-2">{result.name}</td>
                   <td className="border border-gray-300 px-4 py-2">{result.score}</td>
                   <td className="border border-gray-300 px-4 py-2">
-                    {new Date(result.date).toLocaleString("pt-BR", {
-                      dateStyle: "short",
-                      timeStyle: "short",
-                    })}
+                    {format(new Date(result.date), "HH:mm - dd-MM-yyyy")}
                   </td>
                 </tr>
               ))}

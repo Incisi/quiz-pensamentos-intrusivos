@@ -1,40 +1,43 @@
 import { NextResponse } from "next/server";
-import { PrismaClient } from '@prisma/client';
+import { createClient } from "@supabase/supabase-js";
+import { format } from "date-fns";
+import { ptBR } from "date-fns/locale";
 
-const prisma = new PrismaClient();
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 export async function GET() {
     try {
-        const results = await prisma.result.findMany();
-        return NextResponse.json(results);
+        const { data, error } = await supabase.from("results").select("*");
+
+        if (error) throw error;
+
+        return NextResponse.json(data);
     } catch (error) {
-        console.error("Erro ao ler os resultados do banco:", error);
-        return NextResponse.json({ error: `Não foi possível carregar os resultados. ${error}` }, { status: 500 });
-    } finally {
-        await prisma.$disconnect();
+        console.error("Erro ao buscar resultados:", error);
+        return NextResponse.json(
+            { error: "Erro ao buscar resultados do banco de dados." },
+            { status: 500 }
+        );
     }
 }
 
 export async function POST(req: Request) {
     try {
-        const body = await req.json();
-        const { name, score } = body;
+        const { name, score } = await req.json();
+        const currentDate = format(new Date(), "HH:mm - dd-MM-yyyy", { locale: ptBR });
 
-        if (!name || typeof score !== "number") {
-            return NextResponse.json({ error: "Nome e pontuação são obrigatórios." }, { status: 400 });
-        }
+        const { error } = await supabase.from("results").insert([{ name, score, date: currentDate }]);
 
-        const result = await prisma.result.create({
-            data: {
-                name,
-                score,
-                date: new Date(),
-            },
-        });
+        if (error) throw error;
 
-        return NextResponse.json({ message: "Resultado salvo com sucesso!", result });
+        return NextResponse.json({ message: "Resultado salvo com sucesso!" }, { status: 201 });
     } catch (error) {
-        console.error("Erro ao salvar o resultado:", error);
-        return NextResponse.json({ error: "Erro ao salvar o resultado." }, { status: 500 });
+        console.error("Erro ao salvar resultado:", error);
+        return NextResponse.json(
+            { error: "Erro ao salvar resultado no banco de dados." },
+            { status: 500 }
+        );
     }
 }
