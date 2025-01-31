@@ -2,13 +2,15 @@ import React from 'react';
 
 export default async function Tips() {
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen p-6">
-            <div className="p-6 rounded-lg shadow-md shadow-black w-full max-w-2xl bg-white">
-                <h1 className="text-3xl font-bold mb-4 text-center">Controlando Pensamentos Intrusivos</h1>
-                <p className="text-lg text-center mb-6">
+        <div className="flex flex-col items-center justify-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
+            <div className="p-6 rounded-lg shadow-md shadow-black w-full max-w-2xl bg-white dark:bg-gray-800">
+                <h1 className="text-3xl font-bold mb-4 text-center text-gray-900 dark:text-white">
+                    Controlando Pensamentos Intrusivos
+                </h1>
+                <p className="text-lg text-center mb-6 text-gray-800 dark:text-gray-200">
                     💭 <strong>Todo mundo enfrenta pensamentos intrusivos em algum momento.</strong> A diferença está em como aprendemos a lidar com eles. Com paciência e as estratégias certas, é possível reduzir o impacto que eles têm sobre nós.
                 </p>
-                <ul className="list-disc list-inside space-y-4 text-lg">
+                <ul className="list-disc list-inside space-y-4 text-lg text-gray-800 dark:text-gray-200">
                     <li>
                         <strong>Reconheça, mas não se apegue</strong> – O pensamento apareceu? Ótimo, mas ele não define você. Deixe-o passar como uma nuvem no céu.
                     </li>
@@ -28,7 +30,7 @@ export default async function Tips() {
                         <strong>Use a ignorância dos outros como motivação</strong> – O mundo já está cheio de gente que age sem pensar. Você não precisa ser mais um. Seja diferente.
                     </li>
                 </ul>
-                <p className="text-lg text-center mt-6 font-semibold">
+                <p className="text-lg text-center mt-6 font-semibold text-gray-800 dark:text-gray-200">
                     🌟 Pensamentos vêm e vão, mas seu caráter é o que fica. Escolha ser forte.
                 </p>
             </div>
