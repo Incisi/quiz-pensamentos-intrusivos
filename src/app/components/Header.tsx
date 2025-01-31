@@ -25,6 +25,11 @@ export default function Header() {
                 Resultados
               </Link>
             </li>
+            <li>
+              <Link href="/tips" className="hover:no-underline text-xl hover:font-bold">
+                Dicas
+              </Link>
+            </li>
           </ul>
         </nav>
 
