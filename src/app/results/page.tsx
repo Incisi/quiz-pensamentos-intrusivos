@@ -53,6 +53,13 @@ export default async function Results() {
         ) : (
           <p className="text-center">Nenhum resultado salvo ainda.</p>
         )}
+        <div className="mt-6 flex justify-center">
+          <Link href="/tips">
+            <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+              Veja dicas para lidar com os pensamentos intrusivos
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );
