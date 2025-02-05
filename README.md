@@ -10,8 +10,8 @@ O quiz contém uma série de perguntas que visam explorar essas ideias de forma 
 
 - **React**: Biblioteca JavaScript para construção da interface.
 - **Next.js**: Framework React para construção da aplicação com funcionalidades como renderização do lado do servidor e geração de rotas de forma otimizada.
-- **SQLite**: Banco de dados para armazenar e gerenciar os resultados do quiz.
-- **Prisma**: ORM para interação com o banco de dados SQLite.
+- **PostgreSQL**: Banco de dados relacional utilizado para armazenar os resultados do quiz.
+- **Supabase**: Plataforma que fornece um backend como serviço, utilizado para gerenciar e interagir com o banco de dados PostgreSQL.
 - **React Icons**: Conjunto de ícones React para ícones de redes sociais e outros elementos visuais.
 - **Tailwind CSS**: Framework CSS utilitário para estilização rápida e responsiva.
 
@@ -19,7 +19,7 @@ O quiz contém uma série de perguntas que visam explorar essas ideias de forma 
 
 - **Quiz interativo** com perguntas sobre pensamentos intrusivos no atendimento.
 - **Pontuação personalizada** com base nas respostas dos participantes.
-- **Armazenamento de resultados** em banco de dados SQLite para consulta posterior.
+- **Armazenamento de resultados** no banco de dados PostgreSQL via Supabase.
 - **Página de resultados** com uma tabela que exibe os nomes dos participantes e suas pontuações.
 - **Design Responsivo** usando Tailwind CSS, garantindo uma boa experiência em dispositivos móveis e desktops.
 - **Ícones sociais** para links de redes sociais como GitHub e LinkedIn no footer.
@@ -40,15 +40,27 @@ O quiz contém uma série de perguntas que visam explorar essas ideias de forma 
    npm install
    ```
 
-3. **Configurar o banco de dados:**
+3. **Configurar o Supabase:**
+
+   - Crie uma conta no Supabase e inicie um novo projeto.
+   - No painel do Supabase, crie uma tabela chamada results com as seguintes colunas:
+      - name (TEXT)
+      - score (INTEGER)
+      - date (TEXT)
+   - Ative as Regras RLS (Row-Level Security) e adicione permissões para leitura e escrita.
+
+4. **Configurar variáveis de ambiente:**
    
-   O banco de dados SQLite será utilizado para armazenar os resultados. O Prisma está configurado para gerenciar a conexão com o banco. Para configurar o banco, execute o seguinte comando:
+   No diretório raiz do projeto, crie um arquivo .env.local e adicione suas credenciais do Supabase:
 
    ```bash
-   npx prisma migrate dev
+   NEXT_PUBLIC_SUPABASE_URL=YOUR_SUPABASE_URL
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=YOUR_SUPABASE_ANON_KEY
    ```
 
-4. **Rodar o projeto:**
+   Substitua `YOUR_SUPABASE_URL` e `YOUR_SUPABASE_ANON_KEY` pelos valores encontrados no painel do Supabase.
+
+5. **Rodar o projeto:**
    
    Para rodar o projeto localmente, execute:
 
@@ -58,11 +70,11 @@ O quiz contém uma série de perguntas que visam explorar essas ideias de forma 
 
    O aplicativo estará disponível em `http://localhost:3000`.
 
-5. **Participar do Quiz:**
+6. **Participar do Quiz:**
    
    Acesse a página do quiz no navegador, preencha seu nome e comece a responder as perguntas. Ao final, você poderá ver o seu resultado.
 
-6. **Ver Resultados:**
+7. **Ver Resultados:**
    
    Após terminar o quiz, você será redirecionado para a página de resultados onde poderá ver a classificação e comparar seu desempenho com os outros participantes.
 
