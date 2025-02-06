@@ -164,7 +164,7 @@ export default function Quiz() {
         saveResult(name, score + points);
         router.push(`/results`);
       }
-    }, 500);
+    }, 100);
   };
 
   const saveResult = async (name: string, finalScore: number) => {
