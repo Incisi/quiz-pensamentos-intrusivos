@@ -14,8 +14,8 @@ interface Question {
 const questions: Question[] = [
   {
     clientQuestion: `O cliente diz que encontrou um cabelo no pão.`,
-    intrusiveThought: `Seu pensamento intrusivo diz que ele deve ter um 'pão de cabelo' especial.`,
-    mainQuestion: `O que responde?`,
+    intrusiveThought: `Seu pensamento intrusivo manda você dizer que é um tempero especial.`,
+    mainQuestion: `O que você responde?`,
     options: [
       { text: `"Ih, sorte que foi só um. Normalmente vem dois."`, points: 10 },
       { text: `"Ah, pelo menos é só um cabelo, né? Podia ser coisa pior."`, points: 7 },
@@ -24,7 +24,7 @@ const questions: Question[] = [
   },
   {
     clientQuestion: `O cliente diz que está esperando há 20 minutos por uma resposta no chat.`,
-    intrusiveThought: `Seu pensamento intrusivo sugere que ele deve estar fazendo um "pão de paciência".`,
+    intrusiveThought: `Seu pensamento intrusivo diz que é um teste para a paciência dele.`,
     mainQuestion: `O que você faz?`,
     options: [
       { text: `Responde: "Parabéns pela paciência, mas infelizmente a fila está grande, aguarde mais um pouquinho.".`, points: 10 },
@@ -124,7 +124,7 @@ const questions: Question[] = [
   },
   {
     clientQuestion: `O cliente diz: "Vocês dizem que o produto é ultracongelado, mas eu comprei e em uma hora do percurso até minha casa ele descongelou. Que tipo de enganação é essa?"`,
-    intrusiveThought: `Seu pensamento intrusivo diz: "Pergunte se ele sabe ler rótulos."`,
+    intrusiveThought: `Seu pensamento intrusivo diz: "Pergunte se ele quer um freezer móvel e autossustentável de brinde."`,
     mainQuestion: `Como você responde?`,
     options: [
       { text: `"Você deixou o produto fora do congelador por 1 hora, é claro que vai descongelar!!"`, points: 5 },
