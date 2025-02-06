@@ -197,6 +197,7 @@ export default function Quiz() {
             placeholder="Digite seu nome aqui..."
             value={name}
             onChange={(e) => setName(e.target.value)}
+            maxLength={40}
           />
           <button
             onClick={handleStartQuiz}
