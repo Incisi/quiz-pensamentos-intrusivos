@@ -28,7 +28,7 @@ const questions: Question[] = [
     mainQuestion: `O que você faz?`,
     options: [
       { text: `Responde: "Parabéns pela paciência, mas infelizmente a fila está grande, aguarde mais um pouquinho.".`, points: 10 },
-      { text: `Finge que não viu a mensagem e vai tomar um cafézinho."`, points: 2 },
+      { text: `Finge que não viu a mensagem e vai tomar um cafézinho.`, points: 2 },
       { text: `Diz: "Enquanto isso, que tal você ir fazendo outra coisa?"`, points: 8 }
     ]
   },
