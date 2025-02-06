@@ -140,6 +140,7 @@ export default function Quiz() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const router = useRouter();
+  const [isAnswered, setIsAnswered] = useState(false);
 
   const handleStartQuiz = () => {
     if (name.trim()) {
@@ -150,13 +151,20 @@ export default function Quiz() {
   };
 
   const handleOptionClick = (points: number) => {
+    if (isAnswered) return;
+
+    setIsAnswered(true);
     setScore(score + points);
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-    } else {
-      saveResult(name, score + points);
-      router.push(`/results`);
-    }
+
+    setTimeout(() => {
+      if (currentQuestionIndex < questions.length - 1) {
+        setCurrentQuestionIndex(currentQuestionIndex + 1);
+        setIsAnswered(false);
+      } else {
+        saveResult(name, score + points);
+        router.push(`/results`);
+      }
+    }, 500);
   };
 
   const saveResult = async (name: string, finalScore: number) => {
