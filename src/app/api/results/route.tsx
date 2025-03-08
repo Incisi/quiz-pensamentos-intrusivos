@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { toZonedTime } from 'date-fns-tz';
+const timeZone = 'America/Sao_Paulo';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
@@ -26,7 +28,9 @@ export async function GET() {
 export async function POST(req: Request) {
     try {
         const { name, score } = await req.json();
-        const currentDate = format(new Date(), "dd-MM-yyyy - HH:mm", { locale: ptBR });
+
+        const currentDateInBrazil = toZonedTime(new Date(), timeZone);
+        const currentDate = format(currentDateInBrazil, "dd-MM-yyyy - HH:mm", { locale: ptBR });
 
         const { error } = await supabase.from("results").insert([{ name, score, date: currentDate }]);
 
