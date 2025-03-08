@@ -26,7 +26,7 @@ export async function GET() {
 export async function POST(req: Request) {
     try {
         const { name, score } = await req.json();
-        const currentDate = format(new Date(), "dd-MM-yyyy", { locale: ptBR });
+        const currentDate = format(new Date(), "dd-MM-yyyy - HH:mm", { locale: ptBR });
 
         const { error } = await supabase.from("results").insert([{ name, score, date: currentDate }]);
 
