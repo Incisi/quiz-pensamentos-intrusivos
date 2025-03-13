@@ -52,16 +52,16 @@ const questions: Question[] = [
       { text: `"Você não sabe pedir direito e a culpa é minha, é?"`, points: 9 }
     ]
   },
-  {
-    clientQuestion: `O cliente diz que encontrou um pedaço de vidro no pão.`,
-    intrusiveThought: `Seu pensamento intrusivo diz para você cobrar uma taxa como compensação pelo vidro extra enviado.`,
-    mainQuestion: `O que você responde?`,
-    options: [
-      { text: `"Olha, a gente trabalha com pão, não com joias. Se achou vidro, é lucro."`, points: 10 },
-      { text: `"Você tem certeza que não foi você que deixou cair vidro aí? Porque aqui a gente não trabalha com isso."`, points: 6 },
-      { text: `"Vidro? Tá vendo? Nossos produtos são realmente transparentes."`, points: 8 },
-    ]
-  },
+  // {
+  //   clientQuestion: `O cliente diz que encontrou um pedaço de vidro no pão.`,
+  //   intrusiveThought: `Seu pensamento intrusivo diz para você cobrar uma taxa como compensação pelo vidro extra enviado.`,
+  //   mainQuestion: `O que você responde?`,
+  //   options: [
+  //     { text: `"Olha, a gente trabalha com pão, não com joias. Se achou vidro, é lucro."`, points: 10 },
+  //     { text: `"Você tem certeza que não foi você que deixou cair vidro aí? Porque aqui a gente não trabalha com isso."`, points: 6 },
+  //     { text: `"Vidro? Tá vendo? Nossos produtos são realmente transparentes."`, points: 8 },
+  //   ]
+  // },
   {
     clientQuestion: `O cliente diz que o pão não tem o sabor que ele esperava.`,
     intrusiveThought: `Seu pensamento intrusivo diz para você mandar ele pedir um novo pão com o sabor certo.`,
@@ -82,16 +82,16 @@ const questions: Question[] = [
       { text: `"Tamanho não é documento, o que importa é o sabor."`, points: 4 }
     ]
   },
-  {
-    clientQuestion: `O cliente pergunta se colocaram fermento vencido no pão, pois não cresceu nada!`,
-    intrusiveThought: `Seu pensamento intrusivo te mandou ser o mais sarcástico possível.`,
-    mainQuestion: `Como você responde?`,
-    options: [
-      { text: `"Ah, claro, o pão não cresceu porque o fermento estava meditando sobre a vida. Coisa de fermento vencido, sabe como é, ele tá de folga."`, points: 9 },
-      { text: `"Olha, o fermento pode até estar vencido, mas talvez seja o clima emocional da cozinha que não tava propício. Energia negativa afeta o crescimento."`, points: 10 },
-      { text: `"Ah, não cresceu? Que coisa. Mas pelo menos você tem um pão achatado estiloso. Isso é tendência gourmet, sabia?"`, points: 6 },
-    ]
-  },
+  // {
+  //   clientQuestion: `O cliente pergunta se colocaram fermento vencido no pão, pois não cresceu nada!`,
+  //   intrusiveThought: `Seu pensamento intrusivo te mandou ser o mais sarcástico possível.`,
+  //   mainQuestion: `Como você responde?`,
+  //   options: [
+  //     { text: `"Ah, claro, o pão não cresceu porque o fermento estava meditando sobre a vida. Coisa de fermento vencido, sabe como é, ele tá de folga."`, points: 9 },
+  //     { text: `"Olha, o fermento pode até estar vencido, mas talvez seja o clima emocional da cozinha que não tava propício. Energia negativa afeta o crescimento."`, points: 10 },
+  //     { text: `"Ah, não cresceu? Que coisa. Mas pelo menos você tem um pão achatado estiloso. Isso é tendência gourmet, sabia?"`, points: 6 },
+  //   ]
+  // },
   {
     clientQuestion: `O cliente questiona o porquê de não termos atendimento 24 horas.`,
     intrusiveThought: `Seu pensamento intrusivo diz para dizer que a vida não gira em torno dele.`,

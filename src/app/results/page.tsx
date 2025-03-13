@@ -37,7 +37,7 @@ export default async function Results() {
             <thead>
               <tr>
                 <th className="border border-gray-300 px-4 py-2">Nome</th>
-                <th className="border border-gray-300 px-4 py-2">Pontuação (73 à 117)</th>
+                <th className="border border-gray-300 px-4 py-2">Pontuação (61 à 96)</th>
                 <th className="border border-gray-300 px-4 py-2">Data e Hora</th>
               </tr>
             </thead>
