@@ -24,6 +24,7 @@ export default async function Mind() {
                     <li>
                         <strong>Responda com ação</strong> – Mostre para sua mente quem está no controle. Direcione sua energia para algo produtivo.
                     </li>
+
                 </ul>
                 <p className="text-lg text-center mt-6 font-semibold">
                     🌟 Pensamentos vêm e vão, mas seu caráter é o que fica. Escolha ser forte.
